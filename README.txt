@@ -14,4 +14,4 @@ tensorflow (pip install tensorflow)
 Usage:
 train - ./train.sh training_data models/post_mlp_model.h5
 
-predict - ./classify.sh models/post_mlp_model.h5 "Your post to test"
+predict - ./classify.sh models/post_mlp_model.h5 "Your post to predict"
