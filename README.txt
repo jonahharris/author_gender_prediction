@@ -11,7 +11,7 @@ scikit-learn (pip install scikit-learn)
 tensorflow (pip install tensorflow)
 
 ***
+Usage:
+train - ./train.sh training_data models/post_mlp_model.h5
 
-In this test task I am not provide unittests and logging, which sould be used in real work.
-Also I provided example of hyperparameter tuning in file tune_model.py, but I am not tune all possible hyperparameters.
-
+predict - ./classify.sh models/post_mlp_model.h5 "Your post to test"
