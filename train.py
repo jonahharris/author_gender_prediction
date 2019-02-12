@@ -22,7 +22,7 @@ def train_ngram_model(data,
                       epochs=1000,
                       batch_size=128,
                       layers=2,
-                      units=16,
+                      units=32,
                       dropout_rate=0.2,
                       model_file = 'models/post_mlp_model.h5'):
     """Trains n-gram model on the given dataset.
