@@ -65,3 +65,4 @@ def ngram_vectorize(train_texts, val_texts):
     x_train = x_train.astype('float32')
     x_val = x_val.astype('float32')
     return x_train, x_val
+

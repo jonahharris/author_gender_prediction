@@ -3,12 +3,22 @@ Load train data and make preprocessing.
 """
 
 import pandas as pd
+import re
+import unicodedata
 from sklearn.model_selection import train_test_split
 
 
 def base_preprocessing(series):
     series = series.fillna('')
-    filter_pattern = r'[\\\\!"#$%&()*+,-./:;<=>?@[\]^_`{|}~®©™\t\n\'<>]'
+    emoji_pattern = re.compile("["
+      u"\U0001F600-\U0001F64F"
+      u"\U0001F300-\U0001F5FF"
+      u"\U0001F680-\U0001F6FF"
+      u"\U0001F1E0-\U0001F1FF"
+      "]", flags=re.UNICODE)
+    for ndx, member in enumerate(series):
+      series[ndx] = re.sub(emoji_pattern, lambda m: (' ' + unicodedata.name(m.group()).replace(' ', '') + ' '), series[ndx])
+    filter_pattern = r'[\\\\!"#$%&()*+,-./:;<=>?@[\]^_`{|}~®©™\t\n\'<> ]+'
     series = series.str.replace(filter_pattern, ' ')
     series = series.str.lower()
     return series
@@ -43,3 +53,4 @@ class TrainDataLoader:
         y = train_data['label'].values
         train_texts, val_texts, train_labels, val_labels = train_test_split(X, y, test_size=0.20, random_state=1)
         return ((train_texts, train_labels), (val_texts, val_labels))
+
